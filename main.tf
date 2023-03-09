@@ -12,7 +12,7 @@ terraform {
 
 provider "azurerm" {
   features {}
-  tenant_id = var.TENNANT_ID
+  tenant_id = var.tenant_id
 }
 
 resource "azurerm_resource_group" "rg" {
@@ -55,13 +55,11 @@ resource "azurerm_linux_web_app" "mdb" {
   service_plan_id     = azurerm_service_plan.mdbasp.id
 
   site_config {
-
     application_stack {
       java_server         = "TOMCAT"
       java_server_version = 10
       java_version        = 17
     }
-
   }
 
   storage_account {
@@ -72,5 +70,5 @@ resource "azurerm_linux_web_app" "mdb" {
     type         = "AzureFiles"
     mount_path   = "/images/"
   }
-  
+
 }

@@ -1,3 +1,3 @@
 variable "tenant_id" {
-    type = string
+  type = string
 }
