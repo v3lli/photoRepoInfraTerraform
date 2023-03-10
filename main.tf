@@ -6,8 +6,14 @@ terraform {
       version = "~> 3.0.2"
     }
   }
-
   required_version = ">= 1.1.0"
+
+  backend "azurerm" {
+    resource_group_name  = "TFStateRG"
+    storage_account_name = "terraformbckstorage"
+    container_name       = "tfstate"
+    key                  = "terraform.tfstate"
+  }
 }
 
 provider "azurerm" {
@@ -60,6 +66,8 @@ resource "azurerm_linux_web_app" "mdb" {
       java_server_version = 10
       java_version        = 17
     }
+
+    always_on = false
   }
 
   storage_account {
